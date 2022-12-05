@@ -11,9 +11,9 @@ const sendProd = () => {
   const thumbnail = document.getElementById('inputThumbnail').value;
   socket.emit('newProd', { title: title, price: price, thumbnail: thumbnail });
   //dejo el form en blanco
-  document.getElementById('title').value = '';
-  document.getElementById('price').value = '';
-  document.getElementById('thumbnail').value = '';
+  document.getElementById('inputTitle').value = '';
+  document.getElementById('inputPrice').value = '';
+  document.getElementById('inputThumbnail').value = '';
   return;
 };
 

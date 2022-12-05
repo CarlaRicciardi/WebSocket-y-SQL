@@ -18,11 +18,10 @@ class ContenedorMsgs {
   async save(msg) {
     try {
       await knex(this.table).insert(msg);
-      console.log(`msg ingresado`);
+      console.log(`Success ${msg}`);
     } catch (err) {
       console.log(err);
-    }
-}
+    }}
 }
 
 module.exports = ContenedorMsgs;

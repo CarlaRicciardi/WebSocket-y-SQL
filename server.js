@@ -14,7 +14,7 @@ const ContenedorProd = require('./classContainer/contenedor');
 const ContenedorMsgs = require('./classContainer/contenedorMsgs');
 
 const containerProd = new ContenedorProd('productsTable');
-const containerMsgs = new ContenedorMsgs('msgsTable');
+const containerMsgs = new ContenedorMsgs('msgsTable2');
 
 //handlebars settings
 app.set('view engine', 'hbs');
@@ -53,9 +53,9 @@ io.on('connection', async (socket) => {
     io.sockets.emit('products', updateList); //se la envio a todos los sockets
   });
 
-  socket.on('newMsg', (data) => {
-    containerMsgs.save(data);
-    const containerMsgs = containerMsgs.getAll();
+  socket.on('newMsg', async (data) => {
+    await containerMsgs.save(data);
+    const msgsList = containerMsgs.getAll();
     io.sockets.emit('msgs', msgsList);
   });
 });

@@ -13,12 +13,6 @@ class ContenedorProd {
     } catch (err) {
       console.log(`error -> ${err}`);
     }
-
-    // await knex(this.table)
-    //   .insert({ product })
-    //   .then(() => console.log('pude ingresar fruta'))
-    //   .catch((e) => console.log(e));
-    // // .finally(() => knex.destroy());
   }
 
   async getById(id) {

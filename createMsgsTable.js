@@ -2,8 +2,8 @@ const { options } = require('./options/sqlite3.js');
 const knex = require('knex')(options);
 
 // knex.schema
-//   .createTable('msgsTable', (table) => {
-//     table.string('name'), table.string('msg'), table.string('fecha');
+//   .createTable('msgsTable2', (table) => {
+//     table.string('email'), table.string('fyh'), table.string('mensaje');
 //   })
 //   .then(() => {
 //     console.log('tabla creada');
@@ -16,10 +16,10 @@ const knex = require('knex')(options);
 //     knex.destroy();
 //   });
 
-let fecha = new Date().toLocaleDateString() + new Date().toTimeString();
+const fyh = new Date().toLocaleDateString() + new Date().toTimeString();
 
-knex('msgsTable')
-  .insert({ name: 'Carla', msg: 'Hola!!', fecha: fecha })
+knex('msgsTable2')
+  .insert({ email: 'Carla@gmail.com', fyh: fyh, mensaje: 'hola a todos!' })
   .then(() => {
     console.log('logré insertar mensaje');
   })
