@@ -16,12 +16,13 @@ class ContenedorMsgs {
   }
 
   async save(msg) {
-    await knex(this.table)
-      .insert({ msg })
-      .then(() => console.log('pude ingresar un mensaje'))
-      .catch((e) => console.log(e))
-      .finally(() => knex.destroy());
-  }
+    try {
+      await knex(this.table).insert(msg);
+      console.log(`msg ingresado`);
+    } catch (err) {
+      console.log(err);
+    }
+}
 }
 
 module.exports = ContenedorMsgs;

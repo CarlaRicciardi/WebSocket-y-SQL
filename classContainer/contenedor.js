@@ -9,7 +9,7 @@ class ContenedorProd {
   async save(product) {
     try {
       await knex(this.table).insert(product);
-      console.log(`Success ${product}`);
+      console.log(`producto ingresado`);
     } catch (err) {
       console.log(`error -> ${err}`);
     }
