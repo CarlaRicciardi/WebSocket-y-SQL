@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/public', express.static(__dirname + '/public'));
 
 const ContenedorProd = require('./classContainer/contenedor');
-const ContenedorMsgs = require('./classContainer/contenedorMsgs')
+const ContenedorMsgs = require('./classContainer/contenedorMsgs');
 
 const containerProd = new ContenedorProd('productsTable');
 const containerMsgs = new ContenedorMsgs('msgsTable');

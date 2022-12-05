@@ -7,17 +7,12 @@ class ContenedorMsgs {
   }
 
   async getAll() {
-    const msgs = await knex(this.table)
-      .select('*')
-      .then(() => {
-        if (msgs.length > 0) {
-          return msgs;
-        } else {
-          return 'no hay mensajes';
-        }
-      })
-      .catch((e) => console.log(e))
-      .finally(() => knex.destroy());
+    try {
+      const msgs = await knex(this.table).select('*');
+      return msgs.length > 0 ? msgs : [];
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   async save(msg) {

@@ -7,11 +7,18 @@ class ContenedorProd {
   }
 
   async save(product) {
-    await knex(this.table)
-      .insert({ product })
-      .then(() => console.log('pude ingresar fruta'))
-      .catch((e) => console.log(e))
-      .finally(() => knex.destroy());
+    try {
+      await knex(this.table).insert(product);
+      console.log(`Success ${product}`);
+    } catch (err) {
+      console.log(`error -> ${err}`);
+    }
+
+    // await knex(this.table)
+    //   .insert({ product })
+    //   .then(() => console.log('pude ingresar fruta'))
+    //   .catch((e) => console.log(e));
+    // // .finally(() => knex.destroy());
   }
 
   async getById(id) {
@@ -25,23 +32,17 @@ class ContenedorProd {
           return 'no hay producto con ese id';
         }
       })
-      .catch((err) => console.log('hubo un error al traer producto por id', err))
-      .finally(() => knex.destroy());
+      .catch((err) => console.log('hubo un error al traer producto por id', err));
+    // .finally(() => knex.destroy());
   }
 
   async getAll() {
-    await knex(this.table)
-      .select('*')
-      .then((res) => {
-        if (res.length) {
-          return res;
-        } else {
-          return 'no hay productos';
-        }
-      })
-      .catch((e) => console.log(e))
-      .finally(() => knex.destroy());
-  }
+    try {
+      const productsList = await knex(this.table).select('*');
+      return productsList.length > 0 ? productsList : [];
+    } catch (err) {
+      console.log(err);
+    }  }
 
   async deleteById(id) {
     const productById = await knex
@@ -55,8 +56,8 @@ class ContenedorProd {
           return 'no hay producto con ese id';
         }
       })
-      .catch((e) => console.log(e))
-      .finally(() => knex.destroy());
+      .catch((e) => console.log(e));
+    // .finally(() => knex.destroy());
   }
 
   async deleteAll() {
@@ -64,8 +65,8 @@ class ContenedorProd {
       .from(this.table)
       .del()
       .then((res) => console.log(res))
-      .catch((e) => console.log(e))
-      .finally(() => knex.destroy());
+      .catch((e) => console.log(e));
+    // .finally(() => knex.destroy());
   }
 
   async update(id, title, price, thumbnail) {
@@ -74,8 +75,8 @@ class ContenedorProd {
       .where('id', '=', id)
       .update({ title: title, price: price, thumbnail: thumbnail })
       .then(() => console.log('producto actualizado'))
-      .catch((e) => console.log(e))
-      .finally(() => knex.destroy());
+      .catch((e) => console.log(e));
+    // .finally(() => knex.destroy());
   }
 }
 
